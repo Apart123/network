@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul></ul>
+    <script>
+      // fetch, 返回的是一个Promise，当收到服务器的响应头之后，Promise完成
+      // 完成之后会给予一个对象
+      /* const result = fetch("https://study.duyiedu.com/api/herolist");
+      result.then((resp) => {
+        // 获取响应头
+        // 获取响应头所有的键
+        // console.log(resp.headers.keys());
+        // for (const key of resp.headers.keys()) {
+        //     console.log(key);
+        // }
+        // 获取响应头中 content-type 的值
+        // console.log(resp.headers.get("content-type"));
+        resp.json().then((resp) => {
+          console.log(resp); // 得到响应体
+        });
+      }); */
+
+      /* fetch("https://study.duyiedu.com/api/herolist").then((resp) => {
+        resp.json().then((resp) => {
+          const result = resp.data;
+          let ul = document.querySelector("ul");
+          for (const h of result) {
+            let li = document.createElement("li");
+            li.innerText = h.cname;
+            ul.appendChild(li);
+          }
+        });
+      }); */
+
+      //   将上面的代码封装成函数
+      async function getHeros() {
+        /* const resp = await fetch("https://study.duyiedu.com/api/herolist");
+        // return await resp.json();
+        const result = await resp.json();
+        return result; */
+
+        const resp = await fetch("https://study.duyiedu.com/api/herolist").then(
+          resp => resp.json()
+        )
+        return resp;
+      }
+      getHeros().then(resp => {
+        console.log(resp);
+      })
+    </script>
+  </body>
+</html>
